@@ -8,23 +8,30 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent implements OnInit {
-  @ViewChild('todoItem') todoItem !: ElementRef
+  @ViewChild('todoItem') todoItem !: ElementRef;
+  todoObj !: Itodo;
   constructor(
     private _todoService : TodoService
   ) { }
 
   ngOnInit(): void {
-
+    this._todoService.editTodoAsObs$
+      .subscribe(todo => {
+        this.todoObj = todo;
+        this.todoItem.nativeElement.value = todo.todoItem;
+      })
   }
 
 
   onTodoAdd(){
-    let newTodo  = {
+    let newTodo : any  = {
       todoItem : this.todoItem.nativeElement.value,
     }
+    this.todoItem.nativeElement.value = '';
     this._todoService.postTodoItem(newTodo)
       .subscribe(res => {
-        console.log(res);
+        newTodo.todoId = res.name;
+        this._todoService.newTodoObjEmit(newTodo)
       })
   }
 }

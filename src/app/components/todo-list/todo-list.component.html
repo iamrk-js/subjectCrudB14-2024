@@ -1,5 +1,5 @@
 <ul class="list-group">
-    <li
+    <!-- <li
    *ngFor="let todo of todoArr$ | async"
     class="list-group-item d-flex justify-content-between">
     <strong>
@@ -10,17 +10,19 @@
         <button class="btn btn-sm btn-outline-primary mr-3">Edit</button>
         <button class="btn btn-sm btn-outline-danger">Remove</button>
     </span>
-  </li>
-  <!-- <li
+  </li> -->
+  <li
    *ngFor="let todo of todoArr"
-    class="list-group-item">
+    class="list-group-item  d-flex justify-content-between">
     <strong>
         {{ todo.todoItem }}
     </strong>
 
     <span>
-        <button class="btn btn-sm btn-outline-primary">Edit</button>
+        <button 
+        (click)="onEdit(todo)"
+        class="btn btn-sm btn-outline-primary mr-2">Edit</button>
         <button class="btn btn-sm btn-outline-danger">Remove</button>
     </span>
-  </li> -->
+  </li>
 </ul>

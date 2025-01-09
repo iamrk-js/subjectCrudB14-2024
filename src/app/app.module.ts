@@ -8,13 +8,15 @@ import { TodoDashboardComponent } from './components/todo-dashboard/todo-dashboa
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { HeadersInterceptor } from './services/headers.interceptor';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoDashboardComponent,
     TodoFormComponent,
-    TodoListComponent
+    TodoListComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

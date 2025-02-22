@@ -10,6 +10,7 @@ import { TodoService } from 'src/app/services/todo.service';
 export class TodoFormComponent implements OnInit {
   @ViewChild('todoItem') todoItem !: ElementRef;
   todoObj !: Itodo;
+  isinEditMode : boolean = false;
   constructor(
     private _todoService : TodoService
   ) { }
@@ -19,6 +20,7 @@ export class TodoFormComponent implements OnInit {
       .subscribe(todo => {
         this.todoObj = todo;
         this.todoItem.nativeElement.value = todo.todoItem;
+        this.isinEditMode = true;
       })
   }
 
@@ -32,6 +34,23 @@ export class TodoFormComponent implements OnInit {
       .subscribe(res => {
         newTodo.todoId = res.name;
         this._todoService.newTodoObjEmit(newTodo)
+      })
+  }
+
+  onTodoUpdate(){
+    // get UPDATED_TODO Object
+    let updatedTodo = {
+      todoItem : this.todoItem.nativeElement.value,
+      todoId : this.todoObj.todoId
+    }
+    this._todoService.updateTodo(updatedTodo)
+      .subscribe((res: Itodo) => {
+        console.log(res);
+        this.todoItem.nativeElement.value = '';
+        this.isinEditMode = false;
+
+        this._todoService.updatedTodoObjEmit(res)
+
       })
   }
 }

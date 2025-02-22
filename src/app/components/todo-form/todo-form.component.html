@@ -2,4 +2,11 @@
   <label for="todoItem">Todo Item</label>
   <input #todoItem type="text" class="form-control" />
 </div>
-<button (click)="onTodoAdd()" class="btn btn-sm btn-block btn-outline-success">Add Todo</button>
+<button 
+*ngIf="!isinEditMode"
+(click)="onTodoAdd()" class="btn btn-sm btn-block btn-outline-success">Add Todo</button>
+
+
+<button 
+*ngIf="isinEditMode"
+(click)="onTodoUpdate()" class="btn btn-sm btn-block btn-outline-success">Update Todo</button>

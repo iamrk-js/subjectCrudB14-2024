@@ -22,7 +22,9 @@
         <button 
         (click)="onEdit(todo)"
         class="btn btn-sm btn-outline-primary mr-2">Edit</button>
-        <button class="btn btn-sm btn-outline-danger">Remove</button>
+        <button 
+        (click)="onRemove(todo)"
+        class="btn btn-sm btn-outline-danger">Remove</button>
     </span>
   </li>
 </ul>
